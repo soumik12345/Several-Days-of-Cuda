@@ -49,7 +49,7 @@ HelloWorld::HelloWorld(BlockParams bParams, ThreadParams tParams) {
 void HelloWorld::run() {
 
 	dim3 block(BlockParameters.x, BlockParameters.y, BlockParameters.z);
-	dim3 grid(BlockParameters.x, BlockParameters.y, BlockParameters.z);
+	dim3 grid(GridParameters.x, GridParameters.y, GridParameters.z);
 
 	hello_world_kernel << <grid, block >> > ();
 	cudaDeviceSynchronize();

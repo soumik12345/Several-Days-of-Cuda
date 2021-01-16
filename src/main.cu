@@ -21,11 +21,11 @@ int main() {
 		16, 4, 1
 	};
 
-	HelloWorld helloWorldProgram = HelloWorld(blockParams, gridParams);
-	helloWorldProgram.run();
-
-	// HelloWorld helloWorldProgram = HelloWorld(blockParams, threadParams);
+	// HelloWorld helloWorldProgram = HelloWorld(blockParams, gridParams);
 	// helloWorldProgram.run();
+
+	HelloWorld helloWorldProgram = HelloWorld(blockParams, threadParams);
+	helloWorldProgram.run();
 
 	return 0;
 }
