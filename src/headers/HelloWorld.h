@@ -55,3 +55,33 @@ void HelloWorld::run() {
 	cudaDeviceSynchronize();
 	cudaDeviceReset();
 }
+
+
+inline void DemoHelloWorld1() {
+	
+	BlockParams blockParams = {
+		8, 2, 1
+	};
+
+	GridParams gridParams = {
+		2, 2, 1
+	};
+
+	HelloWorld helloWorldProgram = HelloWorld(blockParams, gridParams);
+	helloWorldProgram.run();
+}
+
+
+inline void DemoHelloWorld2() {
+
+	BlockParams blockParams = {
+		8, 2, 1
+	};
+
+	ThreadParams threadParams = {
+		16, 4, 1
+	};
+	
+	HelloWorld helloWorldProgram = HelloWorld(blockParams, threadParams);
+	helloWorldProgram.run();
+}
