@@ -13,6 +13,7 @@ GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
 if [ -f "$FILE" ]; then
+    clear
     ./several_days_of_cuda
     cd ../
     rm -rf build
