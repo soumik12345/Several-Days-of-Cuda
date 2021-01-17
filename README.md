@@ -33,3 +33,5 @@
 3. [Block ID Demo](./src/headers/BlockIdDemo.cuh): Display Thread IDs, Block IDs and Block Dimensions.
 
 4. [Unique Indices Calculation](./src/headers/UniqueIndexCalculation.cuh): Calculate Thread ID for each element in an array.
+
+5. [Unique Indices Calculation using 2D Grid](./src/headers/UniqueIndexCalculation2D.cuh): Calculate Thread ID for each element in an array using a 2D Grid.
