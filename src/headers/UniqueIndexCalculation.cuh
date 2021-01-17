@@ -66,8 +66,8 @@ void UniqueIndexCalculation::run(int* inputArray, int arraySize, int arraySizeBy
 	cudaMalloc((void**)&gpuData, arraySizeBytes);
 	cudaMemcpy(gpuData, inputArray, arraySizeBytes, cudaMemcpyHostToDevice);
 
-	dim3 block(arraySize, 1, 1);
-	dim3 grid(1, 1, 1);
+	dim3 block(BlockParameters.x, BlockParameters.y, BlockParameters.z);
+	dim3 grid(GridParameters.x, GridParameters.y, GridParameters.z);
 
 	unique_index_calculation_kernel << <grid, block >> > (gpuData);
 	cudaDeviceSynchronize();
@@ -80,12 +80,14 @@ inline void Demo() {
 	int arraySizeBytes = sizeof(int) * arraySize;
 	int inputArray[] = {0, 1, 1, 2, 3, 5, 8, 13};
 
+	int n_grids = 2;
+
 	BlockParams blockParams = {
-		arraySize, 1, 1
+		arraySize / n_grids, 1, 1
 	};
 
 	GridParams gridParams = {
-		1, 1, 1
+		n_grids, 1, 1
 	};
 	
 	UniqueIndexCalculation program = UniqueIndexCalculation(blockParams, gridParams);
