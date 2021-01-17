@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-#include "headers/BlockDimDemo.cuh"
+#include "headers/UniqueIndexCalculation.cuh"
 
 
 int main() {
