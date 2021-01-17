@@ -11,7 +11,12 @@
 __global__ void unique_index_calculation_kernel(int* input) {
 
 	int threadId = threadIdx.x;
-	printf("threadId.x = %d, Value = %d\n", threadId, input[threadId]);
+	int offset = blockIdx.x * blockDim.x;
+	int globalIndex = threadId + offset;
+	printf(
+		"threadId.x = %d, offset = %d, global index = %d, Value = %d\n",
+		threadId, offset, globalIndex, input[threadId]
+	);
 }
 
 
