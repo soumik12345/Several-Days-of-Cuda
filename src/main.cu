@@ -3,12 +3,12 @@
 
 #include <stdio.h>
 
-#include "headers/HelloWorld.h"
+#include "headers/ThreadIdDemo.h"
 
 
 int main() {
 
-	DemoHelloWorld2();
+	DemoThreadIdDemo2();
 
 	return 0;
 }
