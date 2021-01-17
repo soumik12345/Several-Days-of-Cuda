@@ -17,5 +17,6 @@ def main(kernel_name):
 	with open('./src/headers/{}.cuh'.format(class_name), 'w') as out_file:
 		out_file.write(source_code)
 
+
 if __name__ == "__main__":
     main()

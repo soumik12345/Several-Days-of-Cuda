@@ -10,7 +10,10 @@
 
 __global__ void thread_id_demo_kernel() {
 
-	printf("Hello World!!!");
+	printf(
+		"threadIdx.x = %d, threadIdx.y = %d, threadIdx.z = %d\n",
+		threadIdx.x, threadIdx.y, threadIdx.z
+	);
 }
 
 
@@ -64,29 +67,14 @@ void ThreadIdDemo::run() {
 }
 
 
-inline void DemoThreadIdDemo1() {
-	
-	BlockParams blockParams = {
-		8, 2, 1
-	};
-
-	GridParams gridParams = {
-		2, 2, 1
-	};
-
-	ThreadIdDemo helloWorldProgram = ThreadIdDemo(blockParams, gridParams);
-	helloWorldProgram.run();
-}
-
-
-inline void DemoThreadIdDemo2() {
+inline void ThreadIdDemo() {
 
 	BlockParams blockParams = {
-		8, 2, 1
+		8, 8, 1
 	};
 
 	ThreadParams threadParams = {
-		16, 4, 1
+		16, 16, 1
 	};
 	
 	ThreadIdDemo helloWorldProgram = ThreadIdDemo(blockParams, threadParams);

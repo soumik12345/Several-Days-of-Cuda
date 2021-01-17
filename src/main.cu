@@ -8,7 +8,7 @@
 
 int main() {
 
-	DemoThreadIdDemo2();
+	ThreadIdDemo();
 
 	return 0;
 }
