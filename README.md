@@ -18,9 +18,11 @@
 
 3. Check the GPU you're using by `nvidia-smi -L`.
 
-4. In order to create starter code for a kernel use `python create_kernel.py --kernel_name <kernel_name_in_camel_case>`. Then import the respective kernel header and call the demo function in `main.cu`.
+4. Bring up the in-built terminal in vscode and use `run.sh` to build and run.
 
-5. Bring up the in-built terminal in vscode and use `run.sh` to build and run.
+5. In order to create starter code for a kernel use `python create_kernel.py --kernel_name <kernel_name_in_camel_case>`. Then import the respective kernel header and call the demo function in `main.cu`.
+
+![](./assets/sample_execution_example.gif)
 
 ## Programs
 
