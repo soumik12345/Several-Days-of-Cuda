@@ -64,22 +64,7 @@ void HelloWorld::run() {
 }
 
 
-inline void DemoHelloWorld1() {
-	
-	BlockParams blockParams = {
-		8, 2, 1
-	};
-
-	GridParams gridParams = {
-		2, 2, 1
-	};
-
-	HelloWorld helloWorldProgram = HelloWorld(blockParams, gridParams);
-	helloWorldProgram.run();
-}
-
-
-inline void DemoHelloWorld2() {
+inline void Demo() {
 
 	BlockParams blockParams = {
 		8, 2, 1
@@ -89,6 +74,6 @@ inline void DemoHelloWorld2() {
 		16, 4, 1
 	};
 	
-	HelloWorld helloWorldProgram = HelloWorld(blockParams, threadParams);
-	helloWorldProgram.run();
+	HelloWorld program = HelloWorld(blockParams, threadParams);
+	program.run();
 }

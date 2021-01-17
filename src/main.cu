@@ -3,12 +3,12 @@
 
 #include <stdio.h>
 
-#include "headers/ThreadIdDemo.cuh"
+#include "headers/BlockDimDemo.cuh"
 
 
 int main() {
 
-	ThreadIdDemo();
+	Demo();
 
 	return 0;
 }

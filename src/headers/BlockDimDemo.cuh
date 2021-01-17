@@ -8,23 +8,33 @@
 #include "Parameters.cuh"
 
 
-__global__ void thread_id_demo_kernel() {
+__global__ void block_dim_demo_kernel() {
 
 	printf(
 		"threadIdx.x = %d, threadIdx.y = %d, threadIdx.z = %d\n",
 		threadIdx.x, threadIdx.y, threadIdx.z
 	);
+
+	printf(
+		"blockIdx.x = %d, blockIdx.y = %d, blockIdx.z = %d\n",
+		blockIdx.x, blockIdx.y, blockIdx.z
+	);
+
+	printf(
+		"blockDim.x = %d, blockDim.y = %d, blockDim.z = %d\n",
+		blockDim.x, blockDim.y, blockDim.z
+	);
 }
 
 
-class ThreadIdDemo {
+class BlockDimDemo {
 
 public:
 	
-	ThreadIdDemo(BlockParams, GridParams);
-	ThreadIdDemo(BlockParams, ThreadParams);
+	BlockDimDemo(BlockParams, GridParams);
+	BlockDimDemo(BlockParams, ThreadParams);
 
-	~ThreadIdDemo();
+	~BlockDimDemo();
 
 	void run();
 
@@ -33,14 +43,14 @@ public:
 };
 
 
-ThreadIdDemo::ThreadIdDemo(BlockParams bParams, GridParams gParams) {
+BlockDimDemo::BlockDimDemo(BlockParams bParams, GridParams gParams) {
 	
 	BlockParameters = bParams;
 	GridParameters = gParams;
 }
 
 
-ThreadIdDemo::ThreadIdDemo(BlockParams bParams, ThreadParams tParams) {
+BlockDimDemo::BlockDimDemo(BlockParams bParams, ThreadParams tParams) {
 
 	BlockParameters = bParams;
 	GridParameters = {
@@ -51,18 +61,18 @@ ThreadIdDemo::ThreadIdDemo(BlockParams bParams, ThreadParams tParams) {
 }
 
 
-ThreadIdDemo::~ThreadIdDemo() {
+BlockDimDemo::~BlockDimDemo() {
 
 	cudaDeviceReset();
 }
 
 
-void ThreadIdDemo::run() {
+void BlockDimDemo::run() {
 
 	dim3 block(BlockParameters.x, BlockParameters.y, BlockParameters.z);
 	dim3 grid(GridParameters.x, GridParameters.y, GridParameters.z);
 
-	thread_id_demo_kernel << <grid, block >> > ();
+	block_dim_demo_kernel << <grid, block >> > ();
 	cudaDeviceSynchronize();
 }
 
@@ -77,6 +87,6 @@ inline void Demo() {
 		16, 4, 1
 	};
 	
-	ThreadIdDemo program = ThreadIdDemo(blockParams, threadParams);
+	BlockDimDemo program = BlockDimDemo(blockParams, threadParams);
 	program.run();
 }
