@@ -80,11 +80,11 @@ void BlockDimDemo::run() {
 inline void Demo() {
 
 	BlockParams blockParams = {
-		8, 2, 1
+		8, 8, 1
 	};
 
 	ThreadParams threadParams = {
-		16, 4, 1
+		16, 16, 1
 	};
 	
 	BlockDimDemo program = BlockDimDemo(blockParams, threadParams);
