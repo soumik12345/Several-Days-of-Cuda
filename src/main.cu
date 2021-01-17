@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-#include "headers/ThreadIdDemo.h"
+#include "headers/ThreadIdDemo.cuh"
 
 
 int main() {

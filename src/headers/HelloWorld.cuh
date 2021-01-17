@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 
-#include "Parameters.h"
+#include "Parameters.cuh"
 
 
 __global__ void hello_world_kernel() {

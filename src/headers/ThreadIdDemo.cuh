@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include "cuda_runtime.h"
@@ -6,7 +5,7 @@
 
 #include <stdio.h>
 
-#include "Parameters.h"
+#include "Parameters.cuh"
 
 
 __global__ void thread_id_demo_kernel() {
@@ -93,4 +92,3 @@ inline void DemoThreadIdDemo2() {
 	ThreadIdDemo helloWorldProgram = ThreadIdDemo(blockParams, threadParams);
 	helloWorldProgram.run();
 }
-

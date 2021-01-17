@@ -11,6 +11,6 @@
 
 2. Go to the Ngrok link where vscode is hosted. Go easy on vscode for the first few minutes if you're not using Ngrok paid version, otherwise you might end up with an error saying too many API calls in the last minute.
 
-3. Bring up the in-built terminal in vscode and use `run.sh` to build and run.
+3. In order to create starter code for a kernel use `python create_kernel.py --kernel_name <kernel_name_in_camel_case>`. Then import the respective kernel header and call the demo function in `main.cu`.
 
-4. In order to create starter code for a kernel use `python create_component.py --kernel_name <kernel_name_in_camel_case>`.
+4. Bring up the in-built terminal in vscode and use `run.sh` to build and run.
