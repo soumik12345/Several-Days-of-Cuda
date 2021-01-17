@@ -21,6 +21,8 @@ public:
 	HelloWorld(BlockParams, GridParams);
 	HelloWorld(BlockParams, ThreadParams);
 
+	~HelloWorld();
+
 	void run();
 
 	BlockParams BlockParameters;
@@ -46,6 +48,12 @@ HelloWorld::HelloWorld(BlockParams bParams, ThreadParams tParams) {
 }
 
 
+HelloWorld::~HelloWorld() {
+
+	cudaDeviceReset();
+}
+
+
 void HelloWorld::run() {
 
 	dim3 block(BlockParameters.x, BlockParameters.y, BlockParameters.z);
@@ -53,7 +61,6 @@ void HelloWorld::run() {
 
 	hello_world_kernel << <grid, block >> > ();
 	cudaDeviceSynchronize();
-	cudaDeviceReset();
 }
 
 
