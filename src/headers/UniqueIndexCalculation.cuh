@@ -81,11 +81,11 @@ void UniqueIndexCalculation::run(int* inputArray, int arraySize, int arraySizeBy
 
 inline void Demo() {
 
-	int arraySize = 8;
+	int arraySize = 16;
 	int arraySizeBytes = sizeof(int) * arraySize;
-	int inputArray[] = {0, 1, 1, 2, 3, 5, 8, 13};
+	int inputArray[] = {0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 65, 99, 164, 263, 427, 690};
 
-	int n_grids = 2;
+	int n_grids = 4;
 
 	BlockParams blockParams = {
 		arraySize / n_grids, 1, 1
