@@ -1,3 +1,5 @@
+export CUDACXX=/usr/local/cuda-11.2/bin/nvcc
+
 clear
 rm -rf build
 
