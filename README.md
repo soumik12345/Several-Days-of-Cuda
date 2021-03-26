@@ -37,3 +37,5 @@
 5. [Unique Indices Calculation using 2D Grid](./src/headers/UniqueIndexCalculation2D.cuh): Calculate Thread ID for each element in an array using a 2D Grid.
 
 5. [Vector Addition](./src/headers/VectorAddition.cuh): Calculate the sum of 2 vectors.
+
+6. [Vector Addition with Unified Memory](./src/headers/VectorAdditionUnifiedMemory.cuh): Calculate the sum of 2 vectors using Unified Memory.

@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-#include "headers/VectorAddition.cuh"
+#include "headers/VectorAdditionUnifiedMemory.cuh"
 
 
 int main() {
