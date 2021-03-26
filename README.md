@@ -8,7 +8,7 @@
 
 2. Check the GPU you're using by `nvidia-smi -L`.
 
-3. Use `run.sh` to build and run. If you are on Windows, clone and open us the directory using Visual Studio 2019 and build using CMake.
+3. Use `run.sh <CUDA_VERSION>` to build and run if you're on Linux. If you are on Windows, clone and open us the directory using Visual Studio 2019 and build using CMake.
 
 ### Instructions for running on google colab
 
@@ -18,7 +18,7 @@
 
 3. If you wish to ssh into the colab instance from your local VSCode, follow the instructions for `VSCode Remote SSH`.
 
-4. `cd /content/Several-Days-of-Cuda` and use `run.sh` to build and run either on the Google Colab Terminal (if you're using Colab Pro) or on the VSCode in-built terminal.
+4. `cd /content/Several-Days-of-Cuda` and use `run.sh <CUDA_VERSION>` to build and run either on the Google Colab Terminal (if you're using Colab Pro) or on the VSCode in-built terminal.
 
 5. In order to create starter code for a kernel use `python create_kernel.py --kernel_name <kernel_name_in_camel_case>`. Then import the respective kernel header and call the demo function in `main.cu`.
 

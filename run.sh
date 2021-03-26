@@ -6,7 +6,7 @@ rm -rf build
 mkdir build
 cd build
 
-cmake ../
+CUDACXX=/usr/local/cuda-${1}/bin/nvcc cmake ../
 make
 
 FILE=./several_days_of_cuda
