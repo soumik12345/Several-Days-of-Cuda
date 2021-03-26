@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-#include "headers/UniqueIndexCalculation2D.cuh"
+#include "headers/VectorAddition.cuh"
 
 
 int main() {
