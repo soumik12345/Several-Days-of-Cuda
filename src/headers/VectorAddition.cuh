@@ -70,9 +70,9 @@ void VectorAdditionProgram::run() {
 	int * deviceA, * deviceB, * deviceResult;
 	size_t vectorBytes = sizeof(int) * vectorLength;
 
-	hostA = (int*)malloc(vectorBytes);
-	hostB = (int*)malloc(vectorBytes);
-	hostResult = (int*)malloc(vectorBytes);
+	cudaMallocHost(&hostA, vectorBytes);
+	cudaMallocHost(&hostB, vectorBytes);
+	cudaMallocHost(&hostResult, vectorBytes);
 
 	cudaMalloc(&deviceA, vectorBytes);
 	cudaMalloc(&deviceB, vectorBytes);
@@ -95,13 +95,21 @@ void VectorAdditionProgram::run() {
 		checkResult(hostA, hostB, hostResult, vectorLength);
 		printf("Program Successfully Executed");
 	}
+
+	cudaFreeHost(hostA);
+	cudaFreeHost(hostB);
+	cudaFreeHost(hostResult);
+
+	cudaFree(deviceA);
+	cudaFree(deviceB);
+	cudaFree(deviceResult);
 }
 
 
 inline void Demo() {
 
 	int vectorLength = 1 << 4;
-	int threadBlockSize = 256;
+	int threadBlockSize = 1 << 10;
 	int gridSize = (vectorLength + threadBlockSize - 1) / threadBlockSize;
 
 	VectorAdditionProgram program = VectorAdditionProgram(vectorLength, threadBlockSize, gridSize);
