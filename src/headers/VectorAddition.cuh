@@ -11,7 +11,7 @@
 
 __global__ void vector_addition_kernel(int* A, int* B, int* result, int vLen) {
 
-	int threadId = (blockIdx.x + blockDim.x) + threadIdx.x;
+	int threadId = (blockIdx.x * blockDim.x) + threadIdx.x;
 	if (threadId < vLen)
 		result[threadId] = A[threadId] + B[threadId];
 }
@@ -85,6 +85,7 @@ void VectorAdditionProgram::run() {
 	cudaMemcpy(deviceB, hostB, vectorBytes, cudaMemcpyHostToDevice);
 
 	vector_addition_kernel << <threadBlockSize, gridSize >> > (deviceA, deviceB, deviceResult, vectorLength);
+	cudaDeviceSynchronize();
 
 	cudaMemcpy(hostResult, deviceResult, vectorBytes, cudaMemcpyDeviceToHost);
 
@@ -108,7 +109,7 @@ void VectorAdditionProgram::run() {
 
 inline void Demo() {
 
-	int vectorLength = 1 << 4;
+	int vectorLength = 1 << 16;
 	int threadBlockSize = 1 << 10;
 	int gridSize = (vectorLength + threadBlockSize - 1) / threadBlockSize;
 
