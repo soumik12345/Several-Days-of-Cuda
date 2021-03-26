@@ -24,7 +24,7 @@ public:
 
 	VectorAdditionUnifiedMemory(int, int, int);
 
-	void run();
+	void run(bool);
 
 private:
 
@@ -66,7 +66,12 @@ void VectorAdditionUnifiedMemory::checkResult(int* A, int* B, int* result, int v
 		assert(result[i] == A[i] + B[i]);
 }
 
-void VectorAdditionUnifiedMemory::run() {
+void VectorAdditionUnifiedMemory::run(bool prefetchMemory) {
+
+	int deviceId = cudaGetDevice(&deviceId);
+
+	printf("GPU Device ID: %d\n", deviceId);
+	printf("CPU Device ID: %d\n\n", cudaCpuDeviceId);
 
 	int * vectorA, * vectorB, * vectorResult;
 	size_t vectorBytes = sizeof(int) * vectorLength;
@@ -78,8 +83,17 @@ void VectorAdditionUnifiedMemory::run() {
 	initVector(vectorA, vectorLength);
 	initVector(vectorB, vectorLength);
 
+	if (prefetchMemory) {
+
+		cudaMemPrefetchAsync(vectorA, vectorBytes, deviceId);
+		cudaMemPrefetchAsync(vectorB, vectorBytes, deviceId);
+	}
+
 	vector_addition_kernel<<<threadBlockSize, gridSize>>>(vectorA, vectorB, vectorResult, vectorLength);
 	cudaDeviceSynchronize();
+
+	if (prefetchMemory)
+		cudaMemPrefetchAsync(vectorResult, vectorBytes, cudaCpuDeviceId);
 
 	if (vectorLength <= 1 << 4)
 		displayResult(vectorA, vectorB, vectorResult, vectorLength);
@@ -95,10 +109,10 @@ void VectorAdditionUnifiedMemory::run() {
 
 inline void Demo() {
 
-	int vectorLength = 1 << 4;
+	int vectorLength = 1 << 16;
 	int threadBlockSize = 1 << 10;
 	int gridSize = (vectorLength + threadBlockSize - 1) / threadBlockSize;
 
 	VectorAdditionUnifiedMemory program = VectorAdditionUnifiedMemory(vectorLength, threadBlockSize, gridSize);
-	program.run();
+	program.run(true);
 }
