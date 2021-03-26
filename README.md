@@ -16,7 +16,7 @@
 
 2. Check the GPU you're using by `nvidia-smi -L`.
 
-3. If you wish to ssh into the colab instance from your local VSCode, follow the instructions for `VSCode Remote SSH`.
+3. If you wish to ssh into the colab instance from your local VSCode, follow the instructions for `VSCode Remote SSH`. For setting up ssh connection between local VSCode to Google Colab, please follow the instructions this article: [Connect Local VSCode to Google Colab’s GPU Runtime](https://medium.com/swlh/connecting-local-vscode-to-google-colabs-gpu-runtime-bceda3d6cf64).
 
 4. `cd /content/Several-Days-of-Cuda` and use `run.sh <CUDA_VERSION>` to build and run either on the Google Colab Terminal (if you're using Colab Pro) or on the VSCode in-built terminal.
 
