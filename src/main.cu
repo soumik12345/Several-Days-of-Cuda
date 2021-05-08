@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-#include "lib/BasicExamples/ParallelizedLoopMultipleBlocks.cuh"
+#include "lib/BasicExamples/ArrayManipulation.cuh"
 
 
 int main() {

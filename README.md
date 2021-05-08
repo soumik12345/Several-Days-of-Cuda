@@ -31,3 +31,6 @@
 2. [Accelerated For Loop](./src/lib/BasicExamples/ParallelizedLoop.cuh)
 
 3. [Accelerated For Loop with Multiple ThreadBlocks](./src/lib/BasicExamples/ParallelizedLoopMultipleBlocks.cuh)
+
+4. [Manipulate Array](./src/lib/BasicExamples/ArrayManipulation.cuh): Simple Array Manipulation on GPU, doubling 
+   all elements in the array.
