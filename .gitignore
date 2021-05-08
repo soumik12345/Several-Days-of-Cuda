@@ -1,6 +1,8 @@
 .vs/
 x64/
+.idea/
 build/
 .vscode/
 **dump**
 **pycache**
+cmake-build-debug/

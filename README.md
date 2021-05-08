@@ -26,16 +26,8 @@
 
 ## Programs
 
-1. [Hello World](./src/headers/HelloWorld.cuh): Print Hello World in a cuda kernel. 
+1. [Hello World](./src/lib/HelloWorld.cuh): Print Hello World in a cuda kernel. 
 
-2. [Thread ID Demo](./src/headers/ThreadIdDemo.cuh): Display Thread IDs.
+2. [Accelerated For Loop](./src/lib/BasicExamples/ParallelizedLoop.cuh)
 
-3. [Block ID Demo](./src/headers/BlockIdDemo.cuh): Display Thread IDs, Block IDs and Block Dimensions.
-
-4. [Unique Indices Calculation](./src/headers/UniqueIndexCalculation.cuh): Calculate Thread ID for each element in an array.
-
-5. [Unique Indices Calculation using 2D Grid](./src/headers/UniqueIndexCalculation2D.cuh): Calculate Thread ID for each element in an array using a 2D Grid.
-
-6. [Vector Addition](./src/headers/VectorAddition.cuh): Calculate the sum of 2 vectors.
-
-7. [Vector Addition with Unified Memory](./src/headers/VectorAdditionUnifiedMemory.cuh): Calculate the sum of 2 vectors using Unified Memory.
+3. [Accelerated For Loop with Multiple ThreadBlocks](./src/lib/BasicExamples/ParallelizedLoopMultipleBlocks.cuh)

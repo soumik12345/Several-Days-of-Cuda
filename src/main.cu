@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-#include "lib/VectorAddition/VectorAdditionUnifiedMemory.cuh"
+#include "lib/BasicExamples/ParallelizedLoopMultipleBlocks.cuh"
 
 
 int main() {
