@@ -34,3 +34,6 @@
 
 4. [Manipulate Array](./src/lib/BasicExamples/ArrayManipulation.cuh): Simple Array Manipulation on GPU, doubling 
    all elements in the array.
+   
+5. [Manipulate Array](./src/lib/BasicExamples/ArrayManipulation2.cuh): Simple Array Manipulation on GPU, doubling
+      all elements in the array using manual memory allocation.
