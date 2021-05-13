@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-#include "lib/BasicExamples/ArrayManipulation.cuh"
+#include "lib/BasicExamples/ArrayManipulation2.cuh"
 
 
 int main() {
