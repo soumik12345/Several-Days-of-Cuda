@@ -7,7 +7,7 @@
 #include <cassert>
 
 
-__global__ void manipulate_array(int* a, int n) {
+__global__ void array_manipulation_kernel(int* a, int n) {
     unsigned int index;
     index = blockIdx.x * blockDim.x + threadIdx.x;
     if (index < n)
@@ -15,7 +15,7 @@ __global__ void manipulate_array(int* a, int n) {
 }
 
 
-class ArrayManipulationProgram {
+class ArrayManipulation {
 
 public:
 
@@ -23,16 +23,16 @@ public:
     int arrayLength;    // Number of elements in the array
     size_t arraySize;   // Size of the array in bytes
 
-    explicit ArrayManipulationProgram(int length);
+    explicit ArrayManipulation(int length);
 
-    void run(size_t numThreads);
+    void run(size_t numGrids, size_t numThreads);
     void DisplayArray() const;
 
 private:
     void assertResult() const;
 };
 
-ArrayManipulationProgram::ArrayManipulationProgram(int length) {
+ArrayManipulation::ArrayManipulation(int length) {
     this->arrayLength = length;
     this->arraySize = length * sizeof(int);
     cudaMallocManaged(&array, arraySize);
@@ -40,25 +40,27 @@ ArrayManipulationProgram::ArrayManipulationProgram(int length) {
         this->array[i] = i;
 }
 
-void ArrayManipulationProgram::DisplayArray() const {
+void ArrayManipulation::DisplayArray() const {
     for(int i = 0; i < this->arrayLength; i++)
         printf("Index %d: %d\n", i, this->array[i]);
 }
 
-void ArrayManipulationProgram::run(size_t numThreads) {
-    size_t numBlocks = (arrayLength + numThreads - 1) / numThreads;
-    manipulate_array<<<numBlocks, numThreads>>>(array, arraySize);
+void ArrayManipulation::run(size_t numGrids, size_t numThreads) {
+    array_manipulation_kernel<<<numGrids, numThreads>>>(array, arraySize);
     cudaDeviceSynchronize();
     this->assertResult();
 }
 
-void ArrayManipulationProgram::assertResult() const {
+void ArrayManipulation::assertResult() const {
     for(int i = 0; i < arrayLength; i++)
         assert (array[i] == i * 2);
 }
 
 void Demo() {
-    ArrayManipulationProgram program(10);
-    program.run(256);
+    int arrayLength = 10;
+    ArrayManipulation program(arrayLength);
+    size_t numThreads = 256;
+    size_t numGrids = (arrayLength + numThreads - 1) / numThreads;
+    program.run(numGrids, numThreads);
     program.DisplayArray();
 }

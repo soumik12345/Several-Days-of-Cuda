@@ -24,6 +24,24 @@
 
 ![](./assets/sample_execution_example.gif)
 
+### Instructions for Development
+
+In order to add a new program to the codebase, you can use a simple Python CLI. Simply install the required 
+dependencies for the CLI using `python3 -m pip install -r requirements.txt`. Now you can use the CLI to add a new 
+example to the codebase. Executing the `create_kernel.py` using the necessary parameters would add a cuda header file 
+with some simple starter code. The usage of the CLI is described below:
+
+```
+Usage: create_kernel.py [OPTIONS]
+
+Options:
+  -k, --kernel_name TEXT          Kernel Name
+  -s, --source_name TEXT          Source Name
+  -a, --memory_allocation_auto TEXT
+                                  Enable Automatic Memory Allocation
+  --help                          Show this message and exit.
+```
+
 ## Programs
 
 1. [Hello World](./src/lib/HelloWorld.cuh): Print Hello World in a cuda kernel. 
@@ -35,5 +53,5 @@
 4. [Manipulate Array](./src/lib/BasicExamples/ArrayManipulation.cuh): Simple Array Manipulation on GPU, doubling 
    all elements in the array.
    
-5. [Manipulate Array](./src/lib/BasicExamples/ArrayManipulation2.cuh): Simple Array Manipulation on GPU, doubling
-      all elements in the array using manual memory allocation.
+5. [Manipulate Array](./src/lib/BasicExamples/ArrayManipulationManualMemoryAllocation.cuh): Simple Array Manipulation on
+   GPU, doubling all elements in the array using manual memory allocation.

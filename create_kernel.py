@@ -1,26 +1,28 @@
-import re
+import os
 import click
-from cli import get_source
-
-
-def camel_case(string: str):
-    temp = string.split('_')
-    return ''.join([t.capitalize() for t in temp])
 
 
 @click.command()
-@click.option('--kernel_name', '-k')
-def main(kernel_name):
-	header_source, main_source = get_source()
-	class_name = camel_case(kernel_name)
-	source_code = header_source.replace('hello_world_kernel', kernel_name + '_kernel')
-	source_code = source_code.replace('HelloWorld', class_name)
-	search = re.findall(r'include\s\"headers/([\w\d]+)\.cuh\"', string=main_source)[0]
-	main_source = main_source.replace(search, class_name)
-	with open('./src/headers/{}.cuh'.format(class_name), 'w') as out_file:
-		out_file.write(source_code)
-	with open('./src/main.cu', 'w') as out_file:
-		out_file.write(main_source)
+@click.option('--kernel_name', '-k', help='Kernel Name')
+@click.option('--source_name', '-s', help='Source Name')
+@click.option('--memory_allocation_auto', '-a', default=False, help='Enable Automatic Memory Allocation')
+def main(kernel_name, source_name, memory_allocation_auto):
+    template_path = './src/lib/BasicExamples/'
+    template_source = open(template_path + 'ArrayManipulation.cuh').read() \
+        if memory_allocation_auto else open(template_path + 'ArrayManipulationManualMemoryAllocation.cuh').read()
+    source_code = template_source.replace('array_manipulation_kernel', kernel_name + '_kernel')
+    source_code = source_code.replace(
+        'ArrayManipulation', source_name.split('/')[-1] if '/' in source_name else source_name)
+    main_source = open('./src/main.cu').read().split('\n')
+    main_source[0] = '#include "lib/{}.cuh"'.format(source_name)
+    main_source = '\n'.join(main_source)
+    if '/' in source_name:
+        os.system('mkdir -p {}'.format('./src/lib/' + source_name.split('/')[0]))
+    with open('./src/lib/{}.cuh'.format(source_name), 'w') as out_file:
+        out_file.write(source_code)
+    print('New template ready at {}'.format('./src/lib/{}.cuh'.format(source_name)))
+    with open('./src/main.cu', 'w') as out_file:
+        out_file.write(main_source)
 
 
 if __name__ == "__main__":

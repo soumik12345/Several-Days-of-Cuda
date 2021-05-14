@@ -10,7 +10,7 @@
 #include <iostream>
 
 
-__global__ void manipulate_array(int* a, int n) {
+__global__ void array_manipulation_kernel(int* a, int n) {
     unsigned int index;
     index = blockIdx.x * blockDim.x + threadIdx.x;
     if (index < n)
@@ -18,13 +18,13 @@ __global__ void manipulate_array(int* a, int n) {
 }
 
 
-class ArrayManipulationProgram2 {
+class ArrayManipulation {
 
 public:
 
     int arrayLength;
 
-    explicit ArrayManipulationProgram2(int arrayLength);
+    explicit ArrayManipulation(int arrayLength);
 
     void initArray(int* array) const;
     void run(int numGrids, int numThreads) const;
@@ -32,27 +32,27 @@ public:
     void checkResult(const int* array, const int* resultArray) const;
 };
 
-ArrayManipulationProgram2::ArrayManipulationProgram2(int arrayLength) {
+ArrayManipulation::ArrayManipulation(int arrayLength) {
     this->arrayLength = arrayLength;
 }
 
-void ArrayManipulationProgram2::initArray(int *array) const {
+void ArrayManipulation::initArray(int *array) const {
     for(int i = 0; i < this->arrayLength; i++)
         array[i] = rand() % 100;
 }
 
-void ArrayManipulationProgram2::displayResult(int *array, int* resultArray) const {
+void ArrayManipulation::displayResult(int *array, int* resultArray) const {
     for(int i = 0; i < this->arrayLength; i++)
         printf("%d * 2 = %d\n", array[i], resultArray[i]);
 }
 
-void ArrayManipulationProgram2::checkResult(const int *array, const int* resultArray) const {
+void ArrayManipulation::checkResult(const int *array, const int* resultArray) const {
     for(int i = 0; i < this->arrayLength; i++)
         assert(resultArray[i] == array[i] * 2);
     printf("Program Executed Successfully");
 }
 
-void ArrayManipulationProgram2::run(int numGrids, int numThreads) const {
+void ArrayManipulation::run(int numGrids, int numThreads) const {
 
     int * hostArray, * resultArray, * deviceArray;
     size_t arrayBytes = sizeof(int) * this->arrayLength;
@@ -64,7 +64,7 @@ void ArrayManipulationProgram2::run(int numGrids, int numThreads) const {
     initArray(hostArray);
     cudaMemcpy(deviceArray, hostArray, arrayBytes, cudaMemcpyHostToDevice);
 
-    manipulate_array<<<numGrids, numThreads>>>(deviceArray, arrayLength);
+    array_manipulation_kernel<<<numGrids, numThreads>>>(deviceArray, arrayLength);
     cudaDeviceSynchronize();
 
     cudaMemcpy(resultArray, deviceArray, arrayBytes, cudaMemcpyDeviceToHost);
@@ -79,6 +79,6 @@ void ArrayManipulationProgram2::run(int numGrids, int numThreads) const {
 
 
 void Demo() {
-    ArrayManipulationProgram2 program1(16);
-    program1.run(1, 16);
+    ArrayManipulation program(16);
+    program.run(1, 16);
 }
