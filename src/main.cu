@@ -1,4 +1,4 @@
-#include "lib/BasicExamples/ArrayManipulation.cuh"
+#include "lib/BasicExamples/Fibonacci.cuh"
 
 
 int main() {

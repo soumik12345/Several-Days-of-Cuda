@@ -37,9 +37,9 @@ Usage: create_kernel.py [OPTIONS]
 Options:
   -k, --kernel_name TEXT          Kernel Name
   -s, --source_name TEXT          Source Name
-  -a, --memory_allocation_auto TEXT
+  -m, --memory_allocation [auto|manual]
                                   Enable Automatic Memory Allocation
-  --help                          Show this message and exit.
+  --help                          Show this message and exit.                       Show this message and exit.
 ```
 
 ## Programs
