@@ -56,4 +56,9 @@ Options:
    
    - [Manual Memory Allocation](./src/lib/BasicExamples/ArrayManipulationManualMemoryAllocation.cuh)
 
-5. [Fibonacci Sequence](./src/lib/BasicExamples/Fibonacci.cuh): Generate Fibonacci Sequence using one-to-one mapping.
+5. Fibonacci Sequence:
+   
+   - [One to One Mapping](./src/lib/BasicExamples/Fibonacci.cuh): Generate Fibonacci Sequence using one-to-one mapping.
+   
+   - [Dynamic Programming](./src/lib/BasicExamples/FibonacciDynamicProgramming.cuh): Generate Fibonacci Sequence using 
+   Dynamic Programming.

@@ -23,29 +23,20 @@ class Fibonacci {
 public:
 
     int arrayLength;
-    double phi;
 
     explicit Fibonacci(int arrayLength);
 
     void run(int numGrids, int numThreads) const;
     void displayResult(double* array, double* resultArray) const;
-    void checkResult(const int* array, const int* resultArray) const;
 };
 
 Fibonacci::Fibonacci(int arrayLength) {
     this->arrayLength = arrayLength;
-    this->phi = (1 - sqrt(5)) / 2.0;
 }
 
 void Fibonacci::displayResult(double *array, double* resultArray) const {
     for(int i = 0; i < this->arrayLength; i++)
         printf("Index %d: %f\n", i, resultArray[i]);
-}
-
-void Fibonacci::checkResult(const int *array, const int* resultArray) const {
-    for(int i = 0; i < this->arrayLength; i++)
-        assert(resultArray[i] == array[i] * 2);
-    printf("Program Executed Successfully");
 }
 
 void Fibonacci::run(int numGrids, int numThreads) const {
@@ -65,7 +56,6 @@ void Fibonacci::run(int numGrids, int numThreads) const {
     cudaMemcpy(resultArray, deviceArray, arrayBytes, cudaMemcpyDeviceToHost);
 
     displayResult(hostArray, resultArray);
-//    checkResult(hostArray, resultArray);
 
     cudaFreeHost(hostArray);
     cudaFreeHost(resultArray);

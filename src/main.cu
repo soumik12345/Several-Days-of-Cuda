@@ -1,4 +1,4 @@
-#include "lib/BasicExamples/Fibonacci.cuh"
+#include "BasicExamples/FibonacciDynamicProgramming.cuh"
 
 
 int main() {
