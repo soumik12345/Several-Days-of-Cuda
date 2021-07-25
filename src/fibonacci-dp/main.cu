@@ -1,6 +1,3 @@
-#pragma once
-
-
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
@@ -38,6 +35,11 @@ FibonacciDynamicProgramming::FibonacciDynamicProgramming(int numElements) {
 
 void FibonacciDynamicProgramming::run(int numThreads) const {
 
+    int deviceId = cudaGetDevice(&deviceId);
+
+    printf("GPU Device ID: %d\n", deviceId);
+    printf("CPU Device ID: %d\n\n", cudaCpuDeviceId);
+
     ULI startingElements[3] = {1, 1, 2};
     ULI* deviceArray;
     ULI resultArray[numThreads];
@@ -65,7 +67,7 @@ void FibonacciDynamicProgramming::run(int numThreads) const {
 }
 
 
-void Demo() {
+int main() {
     FibonacciDynamicProgramming program(16);
     program.run(16);
 }

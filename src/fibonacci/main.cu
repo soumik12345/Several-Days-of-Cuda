@@ -1,6 +1,3 @@
-#pragma once
-
-
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
@@ -41,6 +38,11 @@ void Fibonacci::displayResult(double *array, double* resultArray) const {
 
 void Fibonacci::run(int numGrids, int numThreads) const {
 
+    int deviceId = cudaGetDevice(&deviceId);
+
+    printf("GPU Device ID: %d\n", deviceId);
+    printf("CPU Device ID: %d\n\n", cudaCpuDeviceId);
+
     double * hostArray, * resultArray, * deviceArray;
     size_t arrayBytes = sizeof(int) * this->arrayLength;
 
@@ -63,7 +65,7 @@ void Fibonacci::run(int numGrids, int numThreads) const {
 }
 
 
-void Demo() {
+int main() {
     Fibonacci program(16);
     program.run(1, 256);
 }

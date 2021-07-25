@@ -1,5 +1,3 @@
-#pragma once
-
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
@@ -27,11 +25,17 @@ ParallelizedForLoopProgramMultipleBlocks::ParallelizedForLoopProgramMultipleBloc
 }
 
 void ParallelizedForLoopProgramMultipleBlocks::run() {
+
+    int deviceId = cudaGetDevice(&deviceId);
+
+    printf("GPU Device ID: %d\n", deviceId);
+    printf("CPU Device ID: %d\n\n", cudaCpuDeviceId);
+
     parallel_for_loop<<<this->nBlocks, this->nThreads>>>();
     cudaDeviceSynchronize();
 }
 
-void Demo() {
+int main() {
 
     ParallelizedForLoopProgramMultipleBlocks program(10, 1);
     program.run();

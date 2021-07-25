@@ -1,5 +1,3 @@
-#pragma once
-
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
@@ -25,11 +23,17 @@ ParallelizedForLoopProgram::ParallelizedForLoopProgram(int n) {
 }
 
 void ParallelizedForLoopProgram::run() {
+
+    int deviceId = cudaGetDevice(&deviceId);
+
+    printf("GPU Device ID: %d\n", deviceId);
+    printf("CPU Device ID: %d\n\n", cudaCpuDeviceId);
+
     parallel_for_loop<<<1, this->n>>>();
     cudaDeviceSynchronize();
 }
 
-void Demo() {
+int main() {
 
     ParallelizedForLoopProgram program(10);
     program.run();

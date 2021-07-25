@@ -1,6 +1,3 @@
-#pragma once
-
-
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
@@ -54,6 +51,11 @@ void ArrayManipulation::checkResult(const int *array, const int* resultArray) co
 
 void ArrayManipulation::run(int numGrids, int numThreads) const {
 
+    int deviceId = cudaGetDevice(&deviceId);
+
+    printf("GPU Device ID: %d\n", deviceId);
+    printf("CPU Device ID: %d\n\n", cudaCpuDeviceId);
+
     int * hostArray, * resultArray, * deviceArray;
     size_t arrayBytes = sizeof(int) * this->arrayLength;
 
@@ -78,7 +80,7 @@ void ArrayManipulation::run(int numGrids, int numThreads) const {
 }
 
 
-void Demo() {
+int main() {
     ArrayManipulation program(16);
     program.run(1, 16);
 }

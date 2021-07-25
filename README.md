@@ -2,23 +2,25 @@
 
 ## Instructions
 
-### Instructions for running locally
+### Instructions for building locally
 
 1. Download and install cuda toolkit for your platform.
 
 2. Check the GPU you're using by `nvidia-smi -L`.
 
-3. Use `run.sh <CUDA_VERSION>` to build and run if you're on Linux. If you are on Windows, clone and open us the directory using Visual Studio 2019 and build using CMake.
+3. For building on Linux, use `mkdir build && cd build && cmake ../ && make`.
 
-### Instructions for running on google colab
+### Instructions for building and running on Google Colab
 
-1. Run the `Cuda_Workspace.ipynb` Notebook on Google Colab [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/soumik12345/Several-Days-of-Cuda/blob/master/notebooks/Cuda_Workspace.ipynb)
+- In order to build on Google Colab, run the `colab_execution.ipynb` Notebook [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/soumik12345/Several-Days-of-Cuda/blob/refactor/notebooks/colab_execution.ipynb)
 
-2. Check the GPU you're using by `nvidia-smi -L`.
-
-3. If you wish to ssh into the colab instance from your local VSCode, follow the instructions for `VSCode Remote SSH`. For setting up ssh connection between local VSCode to Google Colab, please follow the instructions this article: [Connect Local VSCode to Google Colab’s GPU Runtime](https://medium.com/swlh/connecting-local-vscode-to-google-colabs-gpu-runtime-bceda3d6cf64).
-
-4. `cd /content/Several-Days-of-Cuda` and use `run.sh <CUDA_VERSION>` to build and run either on the Google Colab Terminal (if you're using Colab Pro) or on the VSCode in-built terminal.
+- In order to develop on Google Colab:
+   
+   - Run the `Cuda_Workspace.ipynb` Notebook on Google Colab [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/soumik12345/Several-Days-of-Cuda/blob/master/notebooks/Cuda_Workspace.ipynb)
+   
+   - Check the GPU you're using by `nvidia-smi -L`.
+   
+   - If you wish to ssh into the colab instance from your local VSCode, follow the instructions for `VSCode Remote SSH`. For setting up ssh connection between local VSCode to Google Colab, please follow the instructions this article: [Connect Local VSCode to Google Colab’s GPU Runtime](https://medium.com/swlh/connecting-local-vscode-to-google-colabs-gpu-runtime-bceda3d6cf64)
 
 ![](./assets/sample_execution_example.gif)
 
@@ -30,33 +32,73 @@ example to the codebase. Executing the `create_kernel.py` using the necessary pa
 with some simple starter code. The usage of the CLI is described below:
 
 ```
-Usage: create_kernel.py [OPTIONS]
+Usage: create_example.py [OPTIONS]
 
 Options:
-  -k, --kernel_name TEXT          Kernel Name
-  -s, --source_name TEXT          Source Name
-  -m, --memory_allocation [auto|manual]
-                                  Enable Automatic Memory Allocation
-  --help                          Show this message and exit.                       Show this message and exit.
+  -k, --example_name TEXT  Example Name in Camel Case
+  --help                   Show this message and exit.
 ```
 
-## Programs
+## Examples
 
-1. [Hello World](./src/lib/HelloWorld.cuh): Print Hello World in a cuda kernel. 
-
-2. [Accelerated For Loop](./src/lib/BasicExamples/ParallelizedLoop.cuh)
-
-3. [Accelerated For Loop with Multiple ThreadBlocks](./src/lib/BasicExamples/ParallelizedLoopMultipleBlocks.cuh)
-
-4. Array Manipulation: 
-   
-   - [Automatic Memory Allocation](./src/lib/BasicExamples/ArrayManipulation.cuh)
-   
-   - [Manual Memory Allocation](./src/lib/BasicExamples/ArrayManipulationManualMemoryAllocation.cuh)
-
-5. Fibonacci Sequence:
-   
-   - [One to One Mapping](./src/lib/BasicExamples/Fibonacci.cuh): Generate Fibonacci Sequence using one-to-one mapping.
-   
-   - [Dynamic Programming](./src/lib/BasicExamples/FibonacciDynamicProgramming.cuh): Generate Fibonacci Sequence using 
-   Dynamic Programming.
+<table>
+   <th>
+      <td>Example</td>
+      <td>Run Instructions (inside <code>build</code> directory)</td>
+   </th>
+   <tr>
+      <td>1</td>
+      <td><a href="src/hello-world">Hello World</a></td>
+      <td><code>./src/hello-world/hello_world</code></td>
+   </tr>
+   <tr>
+      <td>2</td>
+      <td><a href="src/thread-id-demo">Thread-ID Demo</a></td>
+      <td><code>./src/thread-id-demo/thread_id_demo</code></td>
+   </tr>
+   <tr>
+      <td>3</td>
+      <td><a href="src/block-dim-demo">Block-Dim Demo</a></td>
+      <td><code>./src/block-dim-demo/block_dim_demo</code></td>
+   </tr>
+   <tr>
+      <td>4</td>
+      <td><a href="src/unique-index">Unique Index Calculation</a></td>
+      <td><code>./src/unique-index/unique_index</code></td>
+   </tr>
+   <tr>
+      <td>5</td>
+      <td><a href="src/unique-index-2d">Unique Index Calculation in 2D</a></td>
+      <td><code>./src/unique-index-2d/unique_index_2d</code></td>
+   </tr>
+   <tr>
+      <td>6</td>
+      <td><a href="src/parallel-loop">Parallelized Loops</a></td>
+      <td><code>./src/parallel-loop/parallel_loop</code></td>
+   </tr>
+   <tr>
+      <td>7</td>
+      <td><a href="src/parallel-loop-multi-blocks">Parallelized Loops in Multiple Blocks</a></td>
+      <td><code>./src/parallel-loop-multi-blocks/parallel_loop_multi_blocks</code></td>
+   </tr>
+   <tr>
+      <td>8</td>
+      <td><a href="src/array-manipulation">Array Manipulation</a></td>
+      <td><code>./src/array-manipulation/array_manipulation</code></td>
+   </tr>
+   <tr>
+      <td>9</td>
+      <td><a href="src/array-manipulation-manual-memory">Array Manipulation with Manual Memory Allocation</a></td>
+      <td><code>./src/array-manipulation-manual-memory/array_manipulation_manual_memory</code></td>
+   </tr>
+   <tr>
+      <td>10</td>
+      <td><a href="src/vector-addition">Vector Addition</a></td>
+      <td><code>./src/vector-addition/vector_addition</code></td>
+   </tr>
+   <tr>
+      <td>11</td>
+      <td><a href="src/vector-addition-unified-memory">Vector Addition with Unified Memory</a></td>
+      <td><code>./src/vector-addition-unified-memory/vector_addition_unified_memory</code></td>
+   </tr>
+</table>

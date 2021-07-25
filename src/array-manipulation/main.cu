@@ -1,5 +1,3 @@
-#pragma once
-
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
@@ -46,6 +44,12 @@ void ArrayManipulation::DisplayArray() const {
 }
 
 void ArrayManipulation::run(size_t numGrids, size_t numThreads) {
+
+    int deviceId = cudaGetDevice(&deviceId);
+
+    printf("GPU Device ID: %d\n", deviceId);
+    printf("CPU Device ID: %d\n\n", cudaCpuDeviceId);
+
     array_manipulation_kernel<<<numGrids, numThreads>>>(array, arraySize);
     cudaDeviceSynchronize();
     this->assertResult();
@@ -56,7 +60,7 @@ void ArrayManipulation::assertResult() const {
         assert (array[i] == i * 2);
 }
 
-void Demo() {
+int main() {
     int arrayLength = 10;
     ArrayManipulation program(arrayLength);
     size_t numThreads = 256;
