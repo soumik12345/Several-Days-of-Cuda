@@ -44,6 +44,12 @@ void ArrayManipulation::DisplayArray() const {
 }
 
 void ArrayManipulation::run(size_t numGrids, size_t numThreads) {
+
+    int deviceId = cudaGetDevice(&deviceId);
+
+    printf("GPU Device ID: %d\n", deviceId);
+    printf("CPU Device ID: %d\n\n", cudaCpuDeviceId);
+
     array_manipulation_kernel<<<numGrids, numThreads>>>(array, arraySize);
     cudaDeviceSynchronize();
     this->assertResult();

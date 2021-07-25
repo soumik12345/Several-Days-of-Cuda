@@ -23,6 +23,12 @@ ParallelizedForLoopProgram::ParallelizedForLoopProgram(int n) {
 }
 
 void ParallelizedForLoopProgram::run() {
+
+    int deviceId = cudaGetDevice(&deviceId);
+
+    printf("GPU Device ID: %d\n", deviceId);
+    printf("CPU Device ID: %d\n\n", cudaCpuDeviceId);
+
     parallel_for_loop<<<1, this->n>>>();
     cudaDeviceSynchronize();
 }

@@ -65,6 +65,11 @@ HelloWorld::~HelloWorld() {
 
 void HelloWorld::run() {
 
+    int deviceId = cudaGetDevice(&deviceId);
+
+    printf("GPU Device ID: %d\n", deviceId);
+    printf("CPU Device ID: %d\n\n", cudaCpuDeviceId);
+
     dim3 block(BlockParameters.x, BlockParameters.y, BlockParameters.z);
     dim3 grid(GridParameters.x, GridParameters.y, GridParameters.z);
 

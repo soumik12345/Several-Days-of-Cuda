@@ -51,6 +51,11 @@ void ArrayManipulation::checkResult(const int *array, const int* resultArray) co
 
 void ArrayManipulation::run(int numGrids, int numThreads) const {
 
+    int deviceId = cudaGetDevice(&deviceId);
+
+    printf("GPU Device ID: %d\n", deviceId);
+    printf("CPU Device ID: %d\n\n", cudaCpuDeviceId);
+
     int * hostArray, * resultArray, * deviceArray;
     size_t arrayBytes = sizeof(int) * this->arrayLength;
 

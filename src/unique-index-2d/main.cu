@@ -85,12 +85,17 @@ void UniqueIndexCalculation2D::run(int* inputArray, int arraySize, int arraySize
     dim3 block(BlockParameters.x, BlockParameters.y, BlockParameters.z);
     dim3 grid(GridParameters.x, GridParameters.y, GridParameters.z);
 
-    unique_index_calculation_2d_kernel << <grid, block >> > (gpuData);
+    unique_index_calculation_2d_kernel <<<grid, block >>> (gpuData);
     cudaDeviceSynchronize();
 }
 
 
 inline void Demo() {
+
+    int deviceId = cudaGetDevice(&deviceId);
+
+    printf("GPU Device ID: %d\n", deviceId);
+    printf("CPU Device ID: %d\n\n", cudaCpuDeviceId);
 
     int arraySize = 16;
     int arraySizeBytes = sizeof(int) * arraySize;

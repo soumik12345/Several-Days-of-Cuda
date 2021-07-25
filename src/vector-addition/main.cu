@@ -64,6 +64,11 @@ void VectorAdditionProgram::checkResult(int* A, int* B, int* result, int vLen) {
 
 void VectorAdditionProgram::run() {
 
+    int deviceId = cudaGetDevice(&deviceId);
+
+    printf("GPU Device ID: %d\n", deviceId);
+    printf("CPU Device ID: %d\n\n", cudaCpuDeviceId);
+
     int * hostA, * hostB, * hostResult;
     int * deviceA, * deviceB, * deviceResult;
     size_t vectorBytes = sizeof(int) * vectorLength;

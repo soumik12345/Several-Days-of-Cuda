@@ -71,6 +71,11 @@ UniqueIndexCalculation::~UniqueIndexCalculation() {
 
 void UniqueIndexCalculation::run(int* inputArray, int arraySize, int arraySizeBytes) {
 
+    int deviceId = cudaGetDevice(&deviceId);
+
+    printf("GPU Device ID: %d\n", deviceId);
+    printf("CPU Device ID: %d\n\n", cudaCpuDeviceId);
+
     printf("Array Data: ");
     for(int i = 0; i < arraySize; i++)
         printf("%d ", inputArray[i]);

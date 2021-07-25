@@ -35,6 +35,11 @@ FibonacciDynamicProgramming::FibonacciDynamicProgramming(int numElements) {
 
 void FibonacciDynamicProgramming::run(int numThreads) const {
 
+    int deviceId = cudaGetDevice(&deviceId);
+
+    printf("GPU Device ID: %d\n", deviceId);
+    printf("CPU Device ID: %d\n\n", cudaCpuDeviceId);
+
     ULI startingElements[3] = {1, 1, 2};
     ULI* deviceArray;
     ULI resultArray[numThreads];
