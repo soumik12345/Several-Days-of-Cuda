@@ -1,5 +1,3 @@
-#pragma once
-
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
@@ -56,7 +54,7 @@ void ArrayManipulation::assertResult() const {
         assert (array[i] == i * 2);
 }
 
-void Demo() {
+int main() {
     int arrayLength = 10;
     ArrayManipulation program(arrayLength);
     size_t numThreads = 256;

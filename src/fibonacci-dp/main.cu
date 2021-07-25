@@ -1,6 +1,3 @@
-#pragma once
-
-
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
@@ -65,7 +62,7 @@ void FibonacciDynamicProgramming::run(int numThreads) const {
 }
 
 
-void Demo() {
+int main() {
     FibonacciDynamicProgramming program(16);
     program.run(16);
 }

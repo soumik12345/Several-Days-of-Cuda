@@ -1,9 +1,5 @@
-#include "BasicExamples/FibonacciDynamicProgramming.cuh"
-
+#include <cstdio>
 
 int main() {
-
-	Demo();
-
-	return 0;
+    printf("Several Days of Cuda\n");
 }

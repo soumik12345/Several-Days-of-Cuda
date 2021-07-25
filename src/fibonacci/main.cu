@@ -1,6 +1,3 @@
-#pragma once
-
-
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
@@ -63,7 +60,7 @@ void Fibonacci::run(int numGrids, int numThreads) const {
 }
 
 
-void Demo() {
+int main() {
     Fibonacci program(16);
     program.run(1, 256);
 }

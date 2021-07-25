@@ -1,5 +1,3 @@
-#pragma once
-
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
@@ -31,7 +29,7 @@ void ParallelizedForLoopProgramMultipleBlocks::run() {
     cudaDeviceSynchronize();
 }
 
-void Demo() {
+int main() {
 
     ParallelizedForLoopProgramMultipleBlocks program(10, 1);
     program.run();
