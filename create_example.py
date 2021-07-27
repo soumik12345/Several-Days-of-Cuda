@@ -3,10 +3,10 @@ import click
 
 
 @click.command()
-@click.option('--example_name', '-k', help='Example Name in Camel Case')
+@click.option('--example_name', '-e', help='Example Name in Camel Case')
 def main(example_name):
-    cuda_template_path = './src/array-manipulation/main.cu'
-    cmake_template_path = './src/array-manipulation/CMakeLists.txt'
+    cuda_template_path = './src/array-manipulation-manual-memory/main.cu'
+    cmake_template_path = './src/array-manipulation-manual-memory/CMakeLists.txt'
     outer_cmake_path = './CMakeLists.txt'
     example_name_snake_case = ''.join(['_' + i.lower() if i.isupper() else i for i in example_name]).lstrip('_')
     try:
@@ -15,7 +15,8 @@ def main(example_name):
         pass
     cuda_template_source = open(cuda_template_path).read().replace('ArrayManipulation', example_name)
     cuda_template_source = cuda_template_source.replace('array_manipulation_kernel', example_name_snake_case)
-    cmake_template_source = open(cmake_template_path).read().replace('array_manipulation', example_name_snake_case)
+    cmake_template_source = open(cmake_template_path).read().replace(
+        'array_manipulation_manual_memory', example_name_snake_case)
     outer_cmake_source = open(outer_cmake_path).read()
     outer_cmake_source += '\nadd_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/' \
                           + example_name_snake_case.replace('_', '-') + ')\n'

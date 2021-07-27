@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.5.1)
 message(STATUS "CMake version: ${CMAKE_VERSION}")
 
+cmake_policy(SET CMP0104 OLD)
+
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
@@ -69,3 +71,7 @@ add_dependencies(fibo fibonacci)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/fibonacci-dp)
 add_custom_target(fibonacci-dp)
 add_dependencies(fibonacci-dp fibonacci_dp)
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src/rgb-to-gray)
+add_custom_target(rgb-to-gray)
+add_dependencies(rgb-to-gray rgb_to_gray)
